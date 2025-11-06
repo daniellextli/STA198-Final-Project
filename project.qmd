@@ -9,4 +9,13 @@ format: pdf
 
 I did not use AI in the completion of this assignment.
 
-## Exercise 1
+## Loading Libraries/Dataset
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(ggplot2)
+
+data <- read_csv("coffee_data.csv")
+data
+```
