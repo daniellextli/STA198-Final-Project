@@ -19,8 +19,9 @@ library(ggplot2)
 library(dplyr)
 
 data <- read_csv("coffee_data.csv") |>
-  filter(!is.na(Stress_Level), !is.na(Caffeine_mg))
-data_clean <- data[complete.cases(data$Stress_Level, data$Caffeine_mg), ]
+  filter(!is.na(Stress_Level), !is.na(Caffeine_mg)) |> 
+  mutate(high_caffeine = factor(ifelse(Caffeine_mg > 400, 1, 0)))
+data_clean <- data[complete.cases(data$Stress_Level, data$Caffeine_mg), ] 
 
 ```
 
@@ -64,28 +65,11 @@ ggplot(data, aes(x = Coffee_Intake)) +
 
 ## Models
 ```{r}
-#summary(aov(BMI ~ Caffeine_mg, data = data))
-#summary(aov(BMI ~ Caffeine_mg, data = data))
+#BMI, Heart rate, sleep quality, and stress levels
+m2 <- glm(high_caffeine ~ BMI + factor(Sleep_Quality) + Heart_Rate + factor(Stress_Level), 
+          data = data,
+          family = "binomial")
+summary(m2)
 
-data |>
-  group_by(Country) |>
-  summarize(
-    n = n(),
-    avg_BMI = mean(BMI, na.rm = TRUE),
-    v_BMI = var(BMI),
-    sd_BMI = sd(BMI)
-  )
-
-mdata <- data |> filter(Gender == "Female" | Gender == "Male")
-t.test(Caffeine_mg ~ Gender, data = mdata)
-
-model_hr <- lm(Heart_Rate ~ Caffeine_mg + Coffee_Intake + BMI + Age + Gender + Country, data = data)
-summary(model_hr)
-
-
-#summary(aov(Stress_Level ~ Caffeine_mg, data = data))
-str(data$Stress_Level)
-summary(aov(Stress_Level ~ Caffeine_mg, data = data_clean))
-
-
+table(data$Stress_Level, data$high_caffeine)
 ```
