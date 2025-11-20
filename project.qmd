@@ -13,9 +13,79 @@ I did not use AI in the completion of this assignment.
 ```{r}
 #| message: false
 #| warning: false
+#| echo: false
 library(tidyverse)
 library(ggplot2)
+library(dplyr)
 
-data <- read_csv("coffee_data.csv")
-data
+data <- read_csv("coffee_data.csv") |>
+  filter(!is.na(Stress_Level), !is.na(Caffeine_mg))
+data_clean <- data[complete.cases(data$Stress_Level, data$Caffeine_mg), ]
+
+```
+
+## Visualizations of Patients' Demographic
+```{r}
+# m <- lm(Sleep_Hours ~ ., data = data)
+
+# Distribution of participants by country
+ggplot(data, aes(x = Country)) +
+  geom_bar(color = "darkgrey", fill = "lightblue") +
+  labs(
+    x = "Country",
+    y = "Number of Participants",
+    title = "Distribution of Participants by Country"
+  ) +
+  theme_bw() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# gender distribution
+ggplot(data, aes(x = Gender)) +
+  geom_bar(fill = "lightcoral", color = "black") +
+  labs(title = "Gender Distribution", y = "Count", x = "Gender") +
+  theme_bw()
+
+# age distribution
+ggplot(data, aes(x = Age)) +
+  geom_histogram(binwidth = 5, fill = "lightblue", color = "black") +
+  labs(title = "Age Distribution of Participants", x = "Age (years)", y = "Count") +
+  theme_bw()
+
+```
+## Visualizations of Coffee Consumption
+```{r}
+# Coffee Intake Distribution
+ggplot(data, aes(x = Coffee_Intake)) +
+  geom_histogram(binwidth = 0.5, fill = "lightsteelblue1", color = "black") +
+  labs(title = "Distribution of Daily Coffee Intake", x = "Cups per Day", y = "Count") +
+  theme_bw()
+
+```
+
+## Models
+```{r}
+#summary(aov(BMI ~ Caffeine_mg, data = data))
+#summary(aov(BMI ~ Caffeine_mg, data = data))
+
+data |>
+  group_by(Country) |>
+  summarize(
+    n = n(),
+    avg_BMI = mean(BMI, na.rm = TRUE),
+    v_BMI = var(BMI),
+    sd_BMI = sd(BMI)
+  )
+
+mdata <- data |> filter(Gender == "Female" | Gender == "Male")
+t.test(Caffeine_mg ~ Gender, data = mdata)
+
+model_hr <- lm(Heart_Rate ~ Caffeine_mg + Coffee_Intake + BMI + Age + Gender + Country, data = data)
+summary(model_hr)
+
+
+#summary(aov(Stress_Level ~ Caffeine_mg, data = data))
+str(data$Stress_Level)
+summary(aov(Stress_Level ~ Caffeine_mg, data = data_clean))
+
+
 ```
