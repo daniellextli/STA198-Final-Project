@@ -119,13 +119,23 @@ Overall, our findings suggest that high caffeine consumption is strongly associa
 
 ## Sources
 Caffeine in Tea vs. Coffee: How Do They Compare? (n.d.). Retrieved November 20, 2025, from https://www.healthline.com/nutrition/caffeine-in-tea-vs-coffee#caffeine-concerns 
+
 Commissioner, O. of the. (2024). Spilling the Beans: How Much Caffeine is Too Much? FDA. https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much 
+
 Green, P. J., & Suls, J. (1996). The effects of caffeine on ambulatory blood pressure, heart rate, and mood in coffee drinkers. Journal of Behavioral Medicine, 19(2), 111–128. https://doi.org/10.1007/BF01857602 
+
 Melton, A. (2025). Synthetic Data in Healthcare: When It Works & When It Fails. Invene.com. https://www.invene.com/blog/synthetic-data-healthcare
+
 Reichert, C. F., Deboer, T., & Landolt, H. (2022). Adenosine, caffeine, and sleep–wake regulation: State of the science and perspectives. Journal of Sleep Research, 31(4), e13597. https://doi.org/10.1111/jsr.13597 
+
 Reyes, C. M., & Cornelis, M. C. (2018). Caffeine in the Diet: Country-Level Consumption and Guidelines. Nutrients, 10(11), 1772. https://doi.org/10.3390/nu10111772 
+
 Samoggia, A., & Rezzaghi, T. (2021). The Consumption of Caffeine-Containing Products to Enhance Sports Performance: An Application of an Extended Model of the Theory of Planned Behavior. Nutrients, 13(2), 344. https://doi.org/10.3390/nu13020344 
+
 Supplements, P. C. for a W. on P. H. H. A. with C. of C. in F. and D., Board, F. and N., Policy, B. on H. S., & Medicine, I. of. (2014). Intake and Exposure to Caffeine. In Caffeine in Food and Dietary Supplements: Examining Safety: Workshop Summary. National Academies Press (US). https://www.ncbi.nlm.nih.gov/books/NBK202226/ 
+
 Temple, J. L., & Ziegler, A. M. (2011). Gender Differences in Subjective and Physiological Responses to Caffeine and the Role of Steroid Hormones. Journal of Caffeine Research, 1(1), 41–48. https://doi.org/10.1089/jcr.2011.0005 
+
 Verweij, K. J. H., Treur, J. L., & Vink, J. M. (2018). Investigating causal associations between use of nicotine, alcohol, caffeine and cannabis: A two-sample bidirectional Mendelian randomization study. Addiction (Abingdon, England), 113(7), 1333–1338. https://doi.org/10.1111/add.14154 
+
 Wohlwend, B. (2023, July 14). Three Regression Models for Data Science: Linear Regression, Lasso Regression, and Ridge Regression. Medium. https://medium.com/@brandon93.w/three-regression-models-for-data-science-linear-regression-lasso-regression-and-ridge-regression-6aac73c0d7a5
