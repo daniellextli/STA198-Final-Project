@@ -26,7 +26,7 @@ data <- read_csv("coffee_data.csv") |>
 ## Introduction
 Caffeine, a drug consumed daily by 80% of the world population, produces both psychological and physiological effects on the body (Samoggia & Rezzaghi, 2021). The drug creates antagonistic effects on adenosine receptors in the body, which are responsible for the regulation of stress, arousal, and a decrease in fatigue (Reichert et al., 2022). As a result of this, numerous health markers such as BMI, heart rate, cortisol level, and sleep quality are affected by the consumption of caffeine, where research conducted has shown an increase in heart rate and blood pressure levels after frequent daily consumption of the drug (Green & Suls, 1996). 
 
-In addition, other research showed an association with chronic caffeine use and other addictions such as nicotine and alcohol. However, others argue that no causal relationship exists between caffeine consumption and the use of other addictive substances like alcohol, nicotine, cannabis, etc. Research has shown that causal relationships that may exist between caffeine and other addictive substances are not phenotypical associations but are due to other disadvantages/liabilities (Verweij et al., 2018). Considering this, these other disadvantages still show that a causal relationship not limited to genetics still exists between caffeine, alcohol, and smoking. 
+In addition, other research showed an association with chronic caffeine use and other addictions such as nicotine and alcohol. However, others argue that no causal relationship exists between caffeine consumption and the use of other addictive substances like alcohol, nicotine, cannabis, etc. Research has shown that causal relationships that may exist between caffeine and other addictive substances are not phenotypical associations but are due to other disadvantages/liabilities (Verweij et al., 2018). These disadvantages suggest that a causal relationship between caffeine, alcohol, and smoking may exist beyond purely genetic factors.
 
 While caffeine consumption is nearly universal, differences in consumption and effect have been noted in literature across demographic differences. Consumption habits are impacted by geographical origins, culture, and socioeconomic status (Reyes & Cornelis, 2018). This further affects preferred brewing methods and beverage choice across groups, creating a wide range of amounts of caffeine per standard drink in a nation. A prime example of this is that one would need to consume about 5 cups of black tea to get an equal caffeine amount to a standard American coffee (Caffeine in Tea vs. Coffee: How Do They Compare?, n.d.). This trend seems to continue for most Western countries, as they tend to consume more caffeine than their Eastern counterparts. Further discrepancies in consumption have been observed in between age ranges and sex, with 50-64 year old women consuming the most amount of caffeine (Supplements et al., 2014; Temple & Ziegler, 2011). 
  
@@ -70,7 +70,7 @@ ggplot(data, aes(x = Age)) +
 ```
 Figure 3 displays the distribution of participants’ ages, showing that most individuals fall between their early 20s and mid-40s. The largest concentrations appear around the late 20s to late 30s, while the participation declines steadily after about age 45, with very few individuals above age 60. Overall, the age distribution is right-skewed, with its tail extending into older ages.
 
-Over competing choices, a logistic regression model was chosen. This is due to the fact that a logistic regression model requires a binary outcome variable that represents high caffeine intake or the lack thereof (low caffeine intake). To build our logistic regression model, we found our binary outcome variable based on FDA guidance indicating that daily intake up to 400 mg is associated with minimal negative effects (Commissioner, 2024). This study defined high caffeine intake as above 400 mg and low caffeine intake as below 400 mg, which then set the threshold for the binary variable accordingly. 
+Logistic regression was chosen because the outcome variable is binary (high vs. low caffeine intake). To build our logistic regression model, we found our binary outcome variable based on FDA guidance indicating that daily intake up to 400 mg is associated with minimal negative effects (Commissioner, 2024). This study defined high caffeine intake as above 400 mg and low caffeine intake as below 400 mg, which then set the threshold for the binary variable accordingly. 
 
 This study fit two logistic regression models examining the associations between high caffeine consumption and four predictors: BMI, sleep quality, stress level, and heart rate, where there existed no missing data values (therefore not considered/included). Because including both sleep quality and stress level in the same logistic regression model produced collinearity issues, the predictors could not be simultaneously estimated. To address this, we fit two separate logistic regression models: one including sleep quality and one including stress level. This approach allowed each variable to be evaluated without violating model assumptions (refer to Appendix B).
 
@@ -83,9 +83,9 @@ m1 <- glm(high_caffeine ~ BMI + Heart_Rate + factor(Sleep_Quality),
           data = data,
           family = "binomial")
 ```
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\begin{tabular}{lccc}
+\begin{tabular}{lcc}
 \hline
 \textbf{Variable} & \textbf{Estimate} & \textbf{P-value} \\
 \hline
@@ -99,7 +99,7 @@ Sleep Quality: Poor & 1.33 & $1.67 \times 10^{-22}$ \\
 \end{tabular}
 \caption{Logistic Regression of High Caffeine Intake (with Sleep Quality Predictor)}
 \end{table}
-Table 2 presents a logistic regression examining the association between high caffeine intake and stress level, with BMI and heart rate as additional predictors.
+Table 2 shows a logistic regression examining the association between high caffeine intake and stress level, with BMI and heart rate as additional predictors.
 ```{r}
 m2 <- glm(high_caffeine ~ BMI + Heart_Rate + factor(Stress_Level),
           data = data,
@@ -107,7 +107,7 @@ m2 <- glm(high_caffeine ~ BMI + Heart_Rate + factor(Stress_Level),
 ```
 \begin{table}[H]
 \centering
-\begin{tabular}{lccc}
+\begin{tabular}{lcc}
 \hline
 \textbf{Variable} & \textbf{Estimate} & \textbf{P-value} \\
 \hline
