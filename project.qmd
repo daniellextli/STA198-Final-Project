@@ -59,7 +59,7 @@ ggplot(data, aes(x = Gender)) +
   labs(title = "Gender Distribution", y = "Count", x = "Gender") +
   theme_bw()
 ```
-Figure 2 shows the number of participants identifying as Female, Male, or Other. The majority of participants identify as either Female or Male, with both groups contributing roughly similar counts (around 5,000 each). A much smaller portion of the sample identifies as Other (~250), indicating limited representation in that category. Overall, the figure highlights a largely binary gender distribution within the participant pool.
+Figure 2 presents the number of participants identifying as Female, Male, or Other. The majority of participants identify as either Female or Male, with both groups contributing roughly similar counts (approximately 5,000 each). A much smaller portion of the sample identifies as Other (~250), indicating limited representation in that category. Overall, the figure highlights a largely binary gender distribution within the participant pool.
 
 ```{r, fig.cap="Distribution of Participants' Age"}
 # age distribution
@@ -71,19 +71,17 @@ ggplot(data, aes(x = Age)) +
 ```
 Figure 3 displays the distribution of participants’ ages, showing that most individuals fall between their early 20s and mid-40s. The largest concentrations appear around the late 20s to late 30s, while the participation declines steadily after about age 45, with very few individuals above age 60. Overall, the age distribution is right-skewed, with its tail extending into older ages.
 
-Logistic regression was chosen because the outcome variable is binary (high vs. low caffeine intake). To build our logistic regression model, we found our binary outcome variable based on FDA guidance indicating that daily intake up to 400 mg is associated with minimal negative effects (Commissioner, 2024). This study defined high caffeine intake as above 400 mg and low caffeine intake as below 400 mg, which then set the threshold for the binary variable accordingly. 
-
---> Insert Logsitic Models 
-
-This study fit logistic regression models to examine the association between high caffeine consumption and four predictors: BMI, heart rate, sleep quality, and stress level. Logistic regression was appropriate because the outcome variable—high caffeine intake—was binary, defined using the FDA threshold of 400 mg/day. All variables used in the models contained no missing values. The baseline for outcome was considered "low caffeine" intake <400 mg/day. The baseline for stress level was "high," and the baseline for sleep quality was "Excellent"
+This study fit logistic regression models to examine the association between high caffeine consumption and four predictors: BMI, heart rate, sleep quality, and stress level. Logistic regression was appropriate because the outcome variable—high caffeine intake—was binary, defined using the FDA threshold of 400 mg/day. All variables used in the models contained no missing values. The baseline for outcome was considered "low caffeine" intake <400 mg/day. The baseline for stress level was "high," and the baseline for sleep quality was "Excellent".
+--> Insert Logsitic Models (logit stuff)
 
 When an initial model including both sleep quality and stress level was fit, two stress-level coefficients were not estimable due to perfect or near-perfect collinearity between the two categorical predictors (Appendix A). Because This violated the assumption of no perfect multicollinearity, we fit two separate logistic regression models: Model 1 included BMI, heart rate, and sleep quality, while Model 2 included BMI, heart rate, and stress level. This approach allowed each variable to be evaluated independently without violating assumptions of logistic regression.
 
 Our null hypothesis when considering our regression was, when holding the non target variables (BMI, sleep quality, stress level, or heart rate) constant, the slope parameter is 0; therefore, there is no relationship between the specified targeted variable and outcome. Our alternative hypothesis when considering our regression was, when holding the non target variables (BMI, sleep quality, stress level, or heart rate) constant, the slope parameter is not 0; therefore, there is relationship between the specified targeted variable and outcome. We are considering statistical significance at α=0.05. 
+
   
 --> Insert table of Null and Alternative
 
-It is also important to analyze the assumptions that accompany these tests: linearity of log odds and independence of observations. Although the data is synthetic, this doesn’t prove that either assumptions are valid. For independence to be met, each observation must provide unique data that is not influenced by another observation. In the real world of clinical trials, this kind of data would come from taking biomarkers of two patients who have no overlapping lifestyles, where neither of these patients has the opportunity to affect the data of the other. However, an example of non-independent data would be if the data was taken from siblings. In this study, we assume the former.Linearity of the log-odds was tested using the Box–Tidwell procedure, which showed no evidence of violation (Appendix B).The methodology provided is replicable and assumes that the requirement of a binary outcome variable, followed by a logistic regression model, can predict (with limitations due to uncertainty of assumptions verification) how levels of caffeine consumption relate to various health markers.
+It is also important to analyze the assumptions that accompany these tests: linearity of log odds and independence of observations. Although the data is synthetic, this doesn’t prove that either assumptions are valid. For independence to be met, each observation must provide unique data that is not influenced by another observation. In the real world of clinical trials, this kind of data would come from taking biomarkers of two patients who have no overlapping lifestyles, where neither of these patients has the opportunity to affect the data of the other. However, an example of non-independent data would be if the data was taken from siblings. In this study, we assume the former. Linearity of the log-odds was tested using the Box–Tidwell procedure, which showed no evidence of violation (Appendix B).The methodology provided is replicable and assumes that the requirement of a binary outcome variable, followed by a logistic regression model, can predict (with limitations due to uncertainty of assumptions verification) how levels of caffeine consumption relate to various health markers.
 
 ## Results
 Table 1 presents a logistic regression examining the association between high caffeine intake and sleep quality, including BMI and heart rate as additional predictors.
@@ -132,47 +130,109 @@ Stress Level: Medium & -0.351 & 0.000459 \\
 
 --> Add the Odds ratio and CL stuff (fix the odds ratio)
 --> Add baseline references
-Table 1's and Table 2's results indicate that there is sufficient evidence that several physiological and behavioral factors have a significant relationship with high caffeine consumption, defined as intake above 400 mg per day. In both Table 1 and 2, heart rate emerged as a significant positive predictor (p=0.002), with each unit increase in heart rate multiplying the participant's predicted odds of high caffeine intake by $e^{-0.00944}=0.99$, while holding all other variables constant. Sleep quality in Table 1 also showed strong associations, where individuals reporting fair, good, or poor sleep quality had statistically significantly higher odds of high caffeine consumption compared to the reference group, as reflected by the log odds coefficients and highly significant p-values (all greatly less than 0.05), holding all other variables constant. Stress level had a similar relationship in Table 2; when we hold all other variables constant, both low and medium stress categories significantly predict the odds of high caffeine intake relative to the high-stress reference group (both p < 0.001 with patient's predicted odds of high caffeine intake multiplied by $e^{(-0.81)}=2.26$ and $e^{(-0.351)}=1.42$, respectively). In contrast, BMI was not a significant predictor (p = 0.97) in either Table 1 or Table 2, indicating there was insufficient evidence to support a statistically significant relationship with high caffeine consumption in this dataset. Overall, the results show that caffeine consumption has a statistically significant relationship with sleep quality, stress, and heart rate, while BMI had insufficient evidence to support such relationship.
+
+Table 1's and Table 2's results indicate that there is sufficient evidence that several physiological and behavioral factors have a significant relationship with high caffeine consumption, defined as intake above 400 mg per day. In both Table 1 and 2, heart rate emerged as a significant positive predictor (p=0.002), with each unit increase in heart rate multiplying the participant's predicted odds of high caffeine intake by $e^{0.00944}=1.0095$, while holding all other variables constant. Sleep quality in Table 1 also showed strong associations, where individuals reporting fair, good, or poor sleep quality had statistically significantly higher odds of high caffeine consumption compared to the reference group, as reflected by the log odds coefficients and highly significant p-values (all greatly less than 0.05), while holding all other variables constant. Stress level had a similar relationship in Table 2; when we hold all other variables constant, both low and medium stress categories significantly predict the odds of high caffeine intake relative to the high-stress reference group (both p < 0.001 with patient's predicted odds of high caffeine intake multiplied by $e^{-0.816}=0.442$ and $e^{-0.351}=0.704$, respectively). In contrast, when we hold all other variables constant, BMI was not a significant predictor (p = 0.97) in either Table 1 or Table 2, indicating there was insufficient evidence to support a statistically significant relationship with high caffeine consumption in this dataset. Overall, the results show that high caffeine consumption has a statistically significant relationship with sleep quality, stress, and heart rate, while BMI had insufficient evidence to support such relationship.
+
+We then attempted addresses our second goal of our research of identifying demographic factors. We used a logistic regression model including age, gender, and country of origin along with other health markers (BMI, heart rate, sleep quality). 
+
+```{r}
+m_3 <- glm(high_caffeine ~ Age + Gender + Country+ BMI + Heart_Rate + Sleep_Quality,
+           data = data,
+           family = "binomial")
+```
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\hline
+\textbf{Variable} & \textbf{Estimate} & \textbf{P-value} \\
+\hline
+(Intercept) & -3.04 & $< 2 \times 10^{-16}$ \\
+Age & -0.00511 & 0.0642 \\
+Gender: Male & 0.0398 & 0.520 \\
+Gender: Other & 0.146 & 0.466 \\
+Country: Belgium & -0.258 & 0.185 \\
+Country: Brazil & 0.0278 & 0.883 \\
+Country: Canada & 0.0456 & 0.801 \\
+Country: China & -0.0793 & 0.669 \\
+Country: Finland & -0.0793 & 0.673 \\
+Country: France & -0.158 & 0.411 \\
+Country: Germany & -0.236 & 0.222 \\
+Country: India & -0.192 & 0.313 \\
+Country: Italy & -0.320 & 0.104 \\
+Country: Japan & -0.218 & 0.270 \\
+Country: Mexico & -0.301 & 0.130 \\
+Country: Netherlands & 0.0004 & 0.998 \\
+Country: Norway & 0.118 & 0.512 \\
+Country: South Korea & -0.118 & 0.532 \\
+Country: Spain & -0.0248 & 0.895 \\
+Country: Sweden & -0.0608 & 0.744 \\
+Country: Switzerland & -0.214 & 0.270 \\
+Country: UK & -0.305 & 0.118 \\
+Country: USA & -0.119 & 0.542 \\
+BMI & -0.000126 & 0.987 \\
+Heart Rate & 0.00906 & 0.00355 \\
+Sleep Quality: Fair & 0.980 & $1.05 \times 10^{-14}$ \\
+Sleep Quality: Good & 0.614 & $2.35 \times 10^{-7}$ \\
+Sleep Quality: Poor & 1.34 & $< 2 \times 10^{-16}$ \\
+\hline
+\end{tabular}
+\caption{Logistic Regression of High Caffeine Intake (With Demographic Predictors)}
+\end{table}
+
+Table 3's results indicated that demographic variables were not strongly associated with high caffeine intake in this dataset. Specifically, age showed a small negative coefficient (Age: -0.0051, p = 0.064), suggesting a weak association that older participants were slightly less likely to consume high caffeine. We conclude instead that there was insufficient evidence of statistical significance. Gender coefficients were close to zero (GenderMale: 0.040, p = 0.52; GenderOther: 0.146, p = 0.47), indicating no significant difference between genders (insufficient evidence of this also). Similarly, all country coefficients were small and non-significant (all p > 0.1), showing insufficient evidence of significant differences across countries.
 
 
 <---In Discussion you say you were unable to do this, but do not fully explain why or tie it to the original goal.
 ## Discussion 
-The primary goal of this study was to evaluate how caffeine consumption relates to key health markers—BMI, heart rate, sleep quality, and stress level—and to determine whether these relationships differ across demographic groups. Our logistic regression results partially address these goals. We successfully identified several physiological and behavioral variables that predict high caffeine intake, but we were unable to evaluate demographic differences due to issues with multicollinearity and category imbalance.
+The primary goal of this study was to evaluate how caffeine consumption relates to key health markers—BMI, heart rate, sleep quality, and stress level—and to determine whether these relationships differ across demographic groups. We successfully identified several physiological and behavioral variables that predict high caffeine intake. Demographic variables such as age, gender, and country were included in a model but did not show significant associations with high caffeine consumption in this dataset.
 
-Our logistic regression models effectively identify the health and lifestyle factors associated with high caffeine consumption. Heart rate, sleep quality, and stress level consistently emerged as significant predictors of consuming more than 400 mg of caffeine per day. These results suggest that caffeine intake is not uniform across individuals but is linked to physiological and psychological states, particularly stress and sleep patterns. In contrast, there was insufficient evidence of BMI being a significant predictor, indicating no significant association with caffeine consumption in this dataset. The GLM outputs show that higher resting heart rates are associated with increased odds of high caffeine intake, consistent with known physiological responses to stimulants. Additionally, the significant effects of sleep quality and stress level reinforce the conclusion that caffeine consumption is closely related to sleep disturbances and heightened stress.
+Our logistic regression models effectively identify the health and lifestyle factors associated with high caffeine consumption. Heart rate, sleep quality, and stress level consistently emerged as significant predictors of consuming more than 400 mg of caffeine per day. These results suggest that caffeine intake is linked to physiological and psychological states, particularly stress and sleep patterns. In contrast, BMI did not appear to be a significant predictor. Overall, demographic factors did not meaningfully contribute to explaining high caffeine intake, emphasizing that physiological and behavioral predictors are the primary predictors of high caffeine intake in this dataset.
 
-However, our models do not fully address our secondary goal of identifying demographic patterns. Variables such as age, gender, and nationality could not be included due to multicollinearity and the structure of the synthetic dataset. As a result, we were unable to determine whether certain demographic groups are at greater risk of consuming excessive caffeine or experiencing related health consequences.
+Logistic regression was an appropriate starting point for predicting a binary threshold of high caffeine intake. However, several limitations emerged. Category imbalance and redundancy between variables prevented certain levels of sleep quality and stress from being included simultaneously. Alternative approaches, such as regularized logistic regression (LASSO or ridge), decision trees, or random forest models, could better handle correlated predictors and complex interactions (Wohlwend, 2023). Additionally, assessing multicollinearity formally using variance inflation factors would further strengthen the reliability of model selection.
 
-Logistic regression was an appropriate starting point for predicting a binary threshold of caffeine intake. However, several limitations emerged. Category imbalance and redundancy between variables caused singularities in the model, preventing certain levels of sleep quality and stress from being included simultaneously. Alternative approaches, such as regularized logistic regression (LASSO or ridge), decision trees, or random forest models, could better handle correlated predictors and complex interactions (Wohlwend, 2023). Additionally, future work done in assessing multicollinearity formally using variance inflation factors would strengthen the reliability of model selection.
-
-Data quality also introduces constraints on validity. Because the dataset consists of synthetic health records, the associations identified may not fully reflect real-world variability in caffeine use or health outcomes. Synthetic data often smooths over noise, reducing natural variance between demographic groups and producing artificial linear relationships (Melton, 2025). In addition, due to being synthetic data, contextual information about the caffeine intake, like type of caffeinated beverage, timing of consumption can not be found though they may influence caffeine’s physiological effects.
+Data quality also introduces constraints on validity. Because the dataset consists of synthetic health records, the associations identified may not fully reflect real-world variability in caffeine use or health outcomes. Synthetic data often smooths over noise, reducing natural variance between demographic groups and producing artificial linear relationships (Melton, 2025). In addition, due to being synthetic data, contextual information about the caffeine intake can not be found though they may influence caffeine’s physiological effects.
 
 If this study were conducted again in the future, several improvements would strengthen the analysis. First, incorporating real-world observational data would significantly improve external validity and correlations. Second, including additional variables, such as socioeconomic status, occupation, genetics, and chronic health conditions, would offer a more comprehensive understanding of caffeine’s impact as well as allowing us to conclude stronger relationships.
 
-Overall, our findings suggest that high caffeine consumption is strongly associated with higher heart rate, lower sleep quality, and heightened stress, but not BMI. While the results partially meet the goals of the study, limitations in data quality and model constrain the conclusions that can be drawn. Future studies employing larger, real datasets and more flexible modeling techniques would better capture the behavioral and physiological mechanisms underlying high caffeine intake.
+Overall, our findings suggest that high caffeine consumption is strongly associated with higher heart rate, lower sleep quality, and heightened stress, but not BMI and demographic factors. While the results partially meet the goals of the study, limitations in data quality and model choice constrain the conclusions. Future studies employing larger, real datasets and more flexible modeling techniques would better capture the behavioral and physiological mechanisms underlying high caffeine intake.
 
-## Sources
-Caffeine in Tea vs. Coffee: How Do They Compare? (n.d.). Retrieved November 20, 2025, from https://www.healthline.com/nutrition/caffeine-in-tea-vs-coffee#caffeine-concerns 
+\begin{thebibliography}{99}
 
-Commissioner, O. of the. (2024). Spilling the Beans: How Much Caffeine is Too Much? FDA. https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much 
+\bibitem{healthline2025}
+Caffeine in Tea vs.\ Coffee: How Do They Compare? (n.d.). Retrieved November 20, 2025, from \url{https://www.healthline.com/nutrition/caffeine-in-tea-vs-coffee#caffeine-concerns}
 
-Green, P. J., & Suls, J. (1996). The effects of caffeine on ambulatory blood pressure, heart rate, and mood in coffee drinkers. Journal of Behavioral Medicine, 19(2), 111–128. https://doi.org/10.1007/BF01857602 
+\bibitem{fda2024}
+Commissioner, O.\ of the. (2024). \textit{Spilling the Beans: How Much Caffeine is Too Much?} FDA. \url{https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much}
 
-Melton, A. (2025). Synthetic Data in Healthcare: When It Works & When It Fails. Invene.com. https://www.invene.com/blog/synthetic-data-healthcare
+\bibitem{green1996}
+Green, P.\ J., \& Suls, J. (1996). The effects of caffeine on ambulatory blood pressure, heart rate, and mood in coffee drinkers. \textit{Journal of Behavioral Medicine}, 19(2), 111--128. \url{https://doi.org/10.1007/BF01857602}
 
-Reichert, C. F., Deboer, T., & Landolt, H. (2022). Adenosine, caffeine, and sleep–wake regulation: State of the science and perspectives. Journal of Sleep Research, 31(4), e13597. https://doi.org/10.1111/jsr.13597 
+\bibitem{melton2025}
+Melton, A. (2025). \textit{Synthetic Data in Healthcare: When It Works \& When It Fails}. Invene.com. \url{https://www.invene.com/blog/synthetic-data-healthcare}
 
-Reyes, C. M., & Cornelis, M. C. (2018). Caffeine in the Diet: Country-Level Consumption and Guidelines. Nutrients, 10(11), 1772. https://doi.org/10.3390/nu10111772 
+\bibitem{reichert2022}
+Reichert, C.\ F., Deboer, T., \& Landolt, H. (2022). Adenosine, caffeine, and sleep–wake regulation: State of the science and perspectives. \textit{Journal of Sleep Research}, 31(4), e13597. \url{https://doi.org/10.1111/jsr.13597}
 
-Samoggia, A., & Rezzaghi, T. (2021). The Consumption of Caffeine-Containing Products to Enhance Sports Performance: An Application of an Extended Model of the Theory of Planned Behavior. Nutrients, 13(2), 344. https://doi.org/10.3390/nu13020344 
+\bibitem{reyes2018}
+Reyes, C.\ M., \& Cornelis, M.\ C. (2018). Caffeine in the Diet: Country-Level Consumption and Guidelines. \textit{Nutrients}, 10(11), 1772. \url{https://doi.org/10.3390/nu10111772}
 
-Supplements, P. C. for a W. on P. H. H. A. with C. of C. in F. and D., Board, F. and N., Policy, B. on H. S., & Medicine, I. of. (2014). Intake and Exposure to Caffeine. In Caffeine in Food and Dietary Supplements: Examining Safety: Workshop Summary. National Academies Press (US). https://www.ncbi.nlm.nih.gov/books/NBK202226/ 
+\bibitem{samoggia2021}
+Samoggia, A., \& Rezzaghi, T. (2021). The Consumption of Caffeine-Containing Products to Enhance Sports Performance: An Application of an Extended Model of the Theory of Planned Behavior. \textit{Nutrients}, 13(2), 344. \url{https://doi.org/10.3390/nu13020344}
 
-Temple, J. L., & Ziegler, A. M. (2011). Gender Differences in Subjective and Physiological Responses to Caffeine and the Role of Steroid Hormones. Journal of Caffeine Research, 1(1), 41–48. https://doi.org/10.1089/jcr.2011.0005 
+\bibitem{supplements2014}
+Supplements, P.\ C. for a W.\ on P.\ H.\ H.\ A.\ with C.\ of C.\ in F.\ and D., Board, F.\ and N., Policy, B.\ on H.\ S., \& Medicine, I.\ of. (2014). Intake and Exposure to Caffeine. In \textit{Caffeine in Food and Dietary Supplements: Examining Safety: Workshop Summary}. National Academies Press (US). \url{https://www.ncbi.nlm.nih.gov/books/NBK202226/}
 
-Verweij, K. J. H., Treur, J. L., & Vink, J. M. (2018). Investigating causal associations between use of nicotine, alcohol, caffeine and cannabis: A two-sample bidirectional Mendelian randomization study. Addiction (Abingdon, England), 113(7), 1333–1338. https://doi.org/10.1111/add.14154 
+\bibitem{temple2011}
+Temple, J.\ L., \& Ziegler, A.\ M. (2011). Gender Differences in Subjective and Physiological Responses to Caffeine and the Role of Steroid Hormones. \textit{Journal of Caffeine Research}, 1(1), 41--48. \url{https://doi.org/10.1089/jcr.2011.0005}
 
-Wohlwend, B. (2023, July 14). Three Regression Models for Data Science: Linear Regression, Lasso Regression, and Ridge Regression. Medium. https://medium.com/@brandon93.w/three-regression-models-for-data-science-linear-regression-lasso-regression-and-ridge-regression-6aac73c0d7a5
+\bibitem{verweij2018}
+Verweij, K.\ J.\ H., Treur, J.\ L., \& Vink, J.\ M. (2018). Investigating causal associations between use of nicotine, alcohol, caffeine and cannabis: A two-sample bidirectional Mendelian randomization study. \textit{Addiction}, 113(7), 1333--1338. \url{https://doi.org/10.1111/add.14154}
+
+\bibitem{wohlwend2023}
+Wohlwend, B. (2023, July 14). Three Regression Models for Data Science: Linear Regression, Lasso Regression, and Ridge Regression. \textit{Medium}. \url{https://medium.com/@brandon93.w/three-regression-models-for-data-science-linear-regression-lasso-regression-and-ridge-regression-6aac73c0d7a5}
+
+\end{thebibliography}
+
 
 ## Appendix A
 This study fit two logistic regression models examining the associations between high caffeine consumption and four predictors: BMI, sleep quality, stress level, and heart rate. All variables had no missing values and therefore required no imputation. An initial model including all four predictors was attempted:
