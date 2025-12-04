@@ -33,10 +33,10 @@ Although caffeine consumption is widespread, differences in intake and physiolog
 
 However, few studies have simultaneously examined caffeine’s effects on BMI, heart rate, stress, and sleep while accounting for demographic differences. The goal of this research is to further examine the effects of high caffeine intake on key biomarkers: BMI, heart rate, sleep quality, and stress levels. It also aims to identify differences in consumption and health outcomes across demographic variables such as gender, age, and nationality. A clearer understanding of caffeine’s impact on health may inform public health practices and guidelines. Identifying which groups are most at risk could help target interventions and encourage individuals to monitor their consumption before negative effects occur.
 
+## Dataset
 The present study uses the “Global Coffee Health Dataset,” which contains 10,000 synthetic records. The dataset includes “patients” from 20 countries and provides information on daily coffee intake, caffeine levels, sleep duration and quality, BMI, heart rate, stress, physical activity, health issues, occupation, smoking, and alcohol consumption. Its aim is to simulate real-world data on caffeine consumption, sleep, and health outcomes to support wellness research using logistic analysis and predictive modeling.
 
-## Methodology
-To show the differences in patient demographics across caffeine consumption habits, distributions of participants by country, gender, and age were considered. For the categorical variables, country and gender, a bar chart was used to visualize counts. For age, a continuous variable, a histogram was used to plot the overall numeric values of different variables, showing a frequency distribution of values, which groups data into continuous intervals. On the other hand, a bar chart was used for the categorical variables, as their length/height represents the quantity of each variable, rather than a type of distribution. Therefore, each respective visualization represents both the continuous and categorical patient demographics in the dataset. 
+To illustrate the distribution of participants across demographic characteristics and caffeine consumption habits, we examined country, gender, and age. For the categorical variables—country and gender—bar charts were used to display the counts of participants in each group, allowing us to verify that each subgroup was adequately represented. For the continuous variable age, a histogram was used to show the frequency distribution across age intervals, showing how participants were spread across the age range. Overall, these visualizations highlight the distribution of demographic variables in the dataset, ensuring that the sample appropriately represents each subgroup.
 
 ```{r, fig.cap="Distribution of Participants by Country"}
 # Distribution of participants by country
@@ -71,20 +71,37 @@ ggplot(data, aes(x = Age)) +
 ```
 Figure 3 displays the distribution of participants’ ages, showing that most individuals fall between their early 20s and mid-40s. The largest concentrations appear around the late 20s to late 30s, while the participation declines steadily after about age 45, with very few individuals above age 60. Overall, the age distribution is right-skewed, with its tail extending into older ages.
 
+## Methodology
 This study fit logistic regression models to examine the association between high caffeine consumption and four predictors: BMI, heart rate, sleep quality, and stress level. Logistic regression was appropriate because the outcome variable—high caffeine intake—was binary, defined using the FDA threshold of 400 mg/day. All variables used in the models contained no missing values. The baseline for outcome was considered "low caffeine" intake <400 mg/day. The baseline for stress level was "high," and the baseline for sleep quality was "Excellent".
---> Insert Logsitic Models (logit stuff)
 
 When an initial model including both sleep quality and stress level was fit, two stress-level coefficients were not estimable due to perfect or near-perfect collinearity between the two categorical predictors (Appendix A). Because This violated the assumption of no perfect multicollinearity, we fit two separate logistic regression models: Model 1 included BMI, heart rate, and sleep quality, while Model 2 included BMI, heart rate, and stress level. This approach allowed each variable to be evaluated independently without violating assumptions of logistic regression.
+\begin{enumerate}
+\item $\log\left(\frac{p_i}{1 - p_i}\right) =\beta_0+\beta_1 \text{BMI}_i+\beta_2 \text{HeartRate}_i+ \beta_{3}(\text{Sleep}_i = \text{Good}) + \beta_{4} (\text{Sleep}_i = \text{Fair}) + \beta_{5} (\text{Sleep}_i = \text{Poor})$
+\item $\log\left(\frac{p_i}{1 - p_i}\right) =\beta_0+\beta_1 \text{BMI}_i+\beta_2 \text{HeartRate}_i + \beta_{3} (\text{Stress}_i = \text{Low}) + \beta_{4} (\text{Stress}_i = \text{Medium})$
+\end{enumerate}
 
-Our null hypothesis when considering our regression was, when holding the non target variables (BMI, sleep quality, stress level, or heart rate) constant, the slope parameter is 0; therefore, there is no relationship between the specified targeted variable and outcome. Our alternative hypothesis when considering our regression was, when holding the non target variables (BMI, sleep quality, stress level, or heart rate) constant, the slope parameter is not 0; therefore, there is relationship between the specified targeted variable and outcome. We are considering statistical significance at α=0.05. 
-
-  
---> Insert table of Null and Alternative
-
+Our null hypothesis when considering our regression was, when holding the non target variables (BMI, sleep quality, stress level, or heart rate) constant, the slope parameter is 0; therefore, there is no relationship between the specified targeted variable and outcome. Our alternative hypothesis when considering our regression was, when holding the non target variables (BMI, sleep quality, stress level, or heart rate) constant, the slope parameter is not 0; therefore, there is relationship between the specified targeted variable and outcome. We are considering statistical significance at $\alpha=0.05$. 
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\hline
+\textbf{Predictor} & \textbf{Null Hypothesis ($H_0$)} & \textbf{Alternative Hypothesis ($H_1$)} \\
+\hline
+BMI & $\beta_1 = 0$ & $\beta_1 \ne 0$ \\
+Heart Rate & $\beta_2 = 0$ & $\beta_2 \ne 0$ \\
+Sleep: Good vs Excellent & $\beta_3 = 0$ & $\beta_3 \ne 0$ \\
+Sleep: Fair vs Excellent & $\beta_4 = 0$ & $\beta_4 \ne 0$ \\
+Sleep: Poor vs Excellent & $\beta_5 = 0$ & $\beta_5 \ne 0$ \\
+Stress: Low vs High & $\beta_3 = 0$ & $\beta_3 \ne 0$ \\
+Stress: Medium vs High & $\beta_4 = 0$ & $\beta_4 \ne 0$ \\
+\hline
+\end{tabular}
+\caption{Null and Alternative Hypotheses for Logistic Regression Coefficients}
+\end{table}
 It is also important to analyze the assumptions that accompany these tests: linearity of log odds and independence of observations. Although the data is synthetic, this doesn’t prove that either assumptions are valid. For independence to be met, each observation must provide unique data that is not influenced by another observation. In the real world of clinical trials, this kind of data would come from taking biomarkers of two patients who have no overlapping lifestyles, where neither of these patients has the opportunity to affect the data of the other. However, an example of non-independent data would be if the data was taken from siblings. In this study, we assume the former. Linearity of the log-odds was tested using the Box–Tidwell procedure, which showed no evidence of violation (Appendix B).The methodology provided is replicable and assumes that the requirement of a binary outcome variable, followed by a logistic regression model, can predict (with limitations due to uncertainty of assumptions verification) how levels of caffeine consumption relate to various health markers.
 
 ## Results
-Table 1 presents a logistic regression examining the association between high caffeine intake and sleep quality, including BMI and heart rate as additional predictors.
+Table 2 presents a logistic regression examining the association between high caffeine intake and sleep quality, including BMI and heart rate as additional predictors.
 ```{r}
 m1 <- glm(high_caffeine ~ BMI + Heart_Rate + factor(Sleep_Quality), 
           data = data,
@@ -92,21 +109,21 @@ m1 <- glm(high_caffeine ~ BMI + Heart_Rate + factor(Sleep_Quality),
 ```
 \begin{table}[H]
 \centering
-\begin{tabular}{lcc}
+\begin{tabular}{lcccc}
 \hline
-\textbf{Variable} & \textbf{Estimate} & \textbf{P-value} \\
+\textbf{Variable} & \textbf{Estimate} & \textbf{P-value} & \textbf{Odds Ratio} & \textbf{95\% CI for OR} \\
 \hline
-(Intercept) & -3.31 & $1.85 \times 10^{-26}$ \\
-BMI & -0.000289 & 0.971 \\
-Heart Rate & 0.00910 & 0.00333 \\
-Sleep Quality: Fair & 0.981 & $8.75 \times 10^{-15}$ \\
-Sleep Quality: Good & 0.612 & $2.47 \times 10^{-7}$ \\
-Sleep Quality: Poor & 1.33 & $1.67 \times 10^{-22}$ \\
+(Intercept) & -3.31 & $< 2\times10^{-16}$ & 0.036 & (0.020, 0.067) \\
+BMI & -0.000289 & 0.971 & 0.9997 & (0.985, 1.015) \\
+Heart Rate & 0.00910 & 0.00333 & 1.009 & (1.002, 1.016) \\
+Sleep Quality: Fair & 0.981 & $8.75 \times 10^{-15}$ & 2.67 & (2.08, 3.42) \\
+Sleep Quality: Good & 0.612 & $2.47 \times 10^{-7}$ & 1.84 & (1.46, 2.33) \\
+Sleep Quality: Poor & 1.33 & $< 2 \times 10^{-16}$ & 3.79 & (2.90, 4.95) \\
 \hline
 \end{tabular}
 \caption{Logistic Regression of High Caffeine Intake (with Sleep Quality Predictor)}
 \end{table}
-Table 2 shows a logistic regression examining the association between high caffeine intake and stress level, with BMI and heart rate as additional predictors.
+Table 3 shows a logistic regression examining the association between high caffeine intake and stress level, with BMI and heart rate as additional predictors.
 ```{r}
 m2 <- glm(high_caffeine ~ BMI + Heart_Rate + factor(Stress_Level),
           data = data,
@@ -114,79 +131,26 @@ m2 <- glm(high_caffeine ~ BMI + Heart_Rate + factor(Stress_Level),
 ```
 \begin{table}[H]
 \centering
-\begin{tabular}{lcc}
+\begin{tabular}{lcccc}
 \hline
-\textbf{Variable} & \textbf{Estimate} & \textbf{P-value} \\
+\textbf{Variable} & \textbf{Estimate} & \textbf{P-value} & \textbf{Odds Ratio} & \textbf{95\% CI for OR} \\
 \hline
-(Intercept) & -1.98 & $5.22 \times 10^{-11}$ \\
-BMI & -0.00124 & 0.873 \\
-Heart Rate & 0.00944 & 0.00230 \\
-Stress Level: Low & -0.816 & $< 2 \times 10^{-16}$ \\
-Stress Level: Medium & -0.351 & 0.000459 \\
+(Intercept) & -1.98 & $5.22\times10^{-11}$ & 0.138 & (0.077, 0.249) \\
+BMI & -0.00124 & 0.873 & 0.999 & (0.984, 1.014) \\
+Heart Rate & 0.00944 & 0.00230 & 1.009 & (1.003, 1.016) \\
+Stress Level: Low & -0.816 & $<2\times10^{-16}$ & 0.442 & (0.372, 0.526) \\
+Stress Level: Medium & -0.351 & 0.000459 & 0.704 & (0.579, 0.857) \\
 \hline
 \end{tabular}
 \caption{Logistic Regression of High Caffeine Intake (with Stress Level Predictor)}
 \end{table}
 
---> Add the Odds ratio and CL stuff (fix the odds ratio)
---> Add baseline references
+Table 2's and Table 3's results indicate that there is sufficient evidence that several physiological and behavioral factors have a significant relationship with high caffeine consumption. In both Table 2 and 3, heart rate emerged as a significant positive predictor (p=0.002), with each unit increase in heart rate multiplying the participant's predicted odds of high caffeine intake by 1.0095, while holding all other variables constant. Sleep quality in Table 2 also showed strong associations, where individuals reporting fair, good, or poor sleep quality had statistically significantly higher odds of high caffeine consumption compared to the reference group, as reflected by the log odds coefficients and significant p-values (all less than 0.05), while holding all other variables constant. Stress level had a similar relationship in Table 3; when we hold all other variables constant, both low and medium stress categories significantly predict the odds of high caffeine intake relative to the high-stress reference group (both p < 0.001 with patient's predicted odds of high caffeine intake multiplied by 0.442 and 0.704, respectively). In contrast, when we hold all other variables constant, BMI was not a significant predictor (p = 0.97) in either Table 2 or Table 3, indicating there was insufficient evidence to support a statistically significant relationship with high caffeine consumption in this dataset.
 
-Table 1's and Table 2's results indicate that there is sufficient evidence that several physiological and behavioral factors have a significant relationship with high caffeine consumption, defined as intake above 400 mg per day. In both Table 1 and 2, heart rate emerged as a significant positive predictor (p=0.002), with each unit increase in heart rate multiplying the participant's predicted odds of high caffeine intake by $e^{0.00944}=1.0095$, while holding all other variables constant. Sleep quality in Table 1 also showed strong associations, where individuals reporting fair, good, or poor sleep quality had statistically significantly higher odds of high caffeine consumption compared to the reference group, as reflected by the log odds coefficients and highly significant p-values (all greatly less than 0.05), while holding all other variables constant. Stress level had a similar relationship in Table 2; when we hold all other variables constant, both low and medium stress categories significantly predict the odds of high caffeine intake relative to the high-stress reference group (both p < 0.001 with patient's predicted odds of high caffeine intake multiplied by $e^{-0.816}=0.442$ and $e^{-0.351}=0.704$, respectively). In contrast, when we hold all other variables constant, BMI was not a significant predictor (p = 0.97) in either Table 1 or Table 2, indicating there was insufficient evidence to support a statistically significant relationship with high caffeine consumption in this dataset. Overall, the results show that high caffeine consumption has a statistically significant relationship with sleep quality, stress, and heart rate, while BMI had insufficient evidence to support such relationship.
-
-We then attempted addresses our second goal of our research of identifying demographic factors. We used a logistic regression model including age, gender, and country of origin along with other health markers (BMI, heart rate, sleep quality). 
-
-```{r}
-m_3 <- glm(high_caffeine ~ Age + Gender + Country+ BMI + Heart_Rate + Sleep_Quality,
-           data = data,
-           family = "binomial")
-```
-\begin{table}[H]
-\centering
-\begin{tabular}{lcc}
-\hline
-\textbf{Variable} & \textbf{Estimate} & \textbf{P-value} \\
-\hline
-(Intercept) & -3.04 & $< 2 \times 10^{-16}$ \\
-Age & -0.00511 & 0.0642 \\
-Gender: Male & 0.0398 & 0.520 \\
-Gender: Other & 0.146 & 0.466 \\
-Country: Belgium & -0.258 & 0.185 \\
-Country: Brazil & 0.0278 & 0.883 \\
-Country: Canada & 0.0456 & 0.801 \\
-Country: China & -0.0793 & 0.669 \\
-Country: Finland & -0.0793 & 0.673 \\
-Country: France & -0.158 & 0.411 \\
-Country: Germany & -0.236 & 0.222 \\
-Country: India & -0.192 & 0.313 \\
-Country: Italy & -0.320 & 0.104 \\
-Country: Japan & -0.218 & 0.270 \\
-Country: Mexico & -0.301 & 0.130 \\
-Country: Netherlands & 0.0004 & 0.998 \\
-Country: Norway & 0.118 & 0.512 \\
-Country: South Korea & -0.118 & 0.532 \\
-Country: Spain & -0.0248 & 0.895 \\
-Country: Sweden & -0.0608 & 0.744 \\
-Country: Switzerland & -0.214 & 0.270 \\
-Country: UK & -0.305 & 0.118 \\
-Country: USA & -0.119 & 0.542 \\
-BMI & -0.000126 & 0.987 \\
-Heart Rate & 0.00906 & 0.00355 \\
-Sleep Quality: Fair & 0.980 & $1.05 \times 10^{-14}$ \\
-Sleep Quality: Good & 0.614 & $2.35 \times 10^{-7}$ \\
-Sleep Quality: Poor & 1.34 & $< 2 \times 10^{-16}$ \\
-\hline
-\end{tabular}
-\caption{Logistic Regression of High Caffeine Intake (With Demographic Predictors)}
-\end{table}
-
-Table 3's results indicated that demographic variables were not strongly associated with high caffeine intake in this dataset. Specifically, age showed a small negative coefficient (Age: -0.0051, p = 0.064), suggesting a weak association that older participants were slightly less likely to consume high caffeine. We conclude instead that there was insufficient evidence of statistical significance. Gender coefficients were close to zero (GenderMale: 0.040, p = 0.52; GenderOther: 0.146, p = 0.47), indicating no significant difference between genders (insufficient evidence of this also). Similarly, all country coefficients were small and non-significant (all p > 0.1), showing insufficient evidence of significant differences across countries.
-
-
-<---In Discussion you say you were unable to do this, but do not fully explain why or tie it to the original goal.
 ## Discussion 
 The primary goal of this study was to evaluate how caffeine consumption relates to key health markers—BMI, heart rate, sleep quality, and stress level—and to determine whether these relationships differ across demographic groups. We successfully identified several physiological and behavioral variables that predict high caffeine intake. Demographic variables such as age, gender, and country were included in a model but did not show significant associations with high caffeine consumption in this dataset.
 
-Our logistic regression models effectively identify the health and lifestyle factors associated with high caffeine consumption. Heart rate, sleep quality, and stress level consistently emerged as significant predictors of consuming more than 400 mg of caffeine per day. These results suggest that caffeine intake is linked to physiological and psychological states, particularly stress and sleep patterns. In contrast, BMI did not appear to be a significant predictor. Overall, demographic factors did not meaningfully contribute to explaining high caffeine intake, emphasizing that physiological and behavioral predictors are the primary predictors of high caffeine intake in this dataset.
+Our logistic regression models effectively identify the health factors associated with high caffeine consumption. Heart rate, sleep quality, and stress level consistently emerged as significant predictors of consuming more than 400 mg of caffeine per day. These results suggest that caffeine intake is linked to physiological and psychological states, particularly stress and sleep patterns. In contrast, BMI did not appear to be a significant predictor.
 
 Logistic regression was an appropriate starting point for predicting a binary threshold of high caffeine intake. However, several limitations emerged. Category imbalance and redundancy between variables prevented certain levels of sleep quality and stress from being included simultaneously. Alternative approaches, such as regularized logistic regression (LASSO or ridge), decision trees, or random forest models, could better handle correlated predictors and complex interactions (Wohlwend, 2023). Additionally, assessing multicollinearity formally using variance inflation factors would further strengthen the reliability of model selection.
 
@@ -260,7 +224,7 @@ Stress Level: Medium & NA & NA \\
 \caption{Logistic Regression of High Caffeine Intake (with All Predictors)}
 \end{table}
 
-However, Table 3 indicates that two coefficient estimates were not defined due to singularities, specifically for the Low and Medium categories of stress level. This suggests perfect or near-perfect collinearity between the categorical predictors (sleep quality and stress level), preventing the model from estimating all parameters. Because the full model could not be reliably estimated, the analysis was separated into two logistic regression models: one including sleep quality (but excluding stress level), and one including stress level (but excluding sleep quality). This approach resolved the singularity issue and allowed each predictor to be evaluated without collinearity constraints.
+However, Table 4 indicates that two coefficient estimates were not defined due to singularities, specifically for the Low and Medium categories of stress level. This suggests perfect or near-perfect collinearity between the categorical predictors (sleep quality and stress level), preventing the model from estimating all parameters. Because the full model could not be reliably estimated, the analysis was separated into two logistic regression models: one including sleep quality (but excluding stress level), and one including stress level (but excluding sleep quality). This approach resolved the singularity issue and allowed each predictor to be evaluated without collinearity constraints.
 
 ## Appendix B
 The test for the linearity of log odds can only be conducted on continuous variables, (e.g., BMI, Heart Rate). Categorical variables (Sleep_Quality, Stress_Level) can't be tested. Categorical variables are converted to dummy variables automatically in R if they are factors, which we confirmed they were using the factor function. The model estimates log-odds differences relative to the reference, so there is no linearity assumption because each category is treated separately. To test the linearity of the logit assumption in logistic regression in R, we ran a Box–Tidwell test (logit linearity test).
@@ -291,5 +255,5 @@ Sleep Quality: Poor & 1.33 & $< 2 \times 10^{-16}$ \\
 \end{tabular}
 \caption{Box–Tidwell Test for Logit Linearity Test}
 \end{table}
-Table 4 shows that the p-values for the BMI_log and HR_log terms (0.836 and 0.798, respectively) both exceed 0.05. This indicates insufficient evidence of non-linearity, and therefore the linearity assumption is considered to be satisfied.
+Table 5 shows that the p-values for the BMI_log and HR_log terms (0.836 and 0.798, respectively) both exceed 0.05. This indicates insufficient evidence of non-linearity, and therefore the linearity assumption is considered to be satisfied.
 
