@@ -131,9 +131,11 @@ Stress Level: Medium & -0.351 & 0.000459 \\
 \end{table}
 
 --> Add the Odds ratio and CL stuff (fix the odds ratio)
-
+--> Add baseline references
 Table 1's and Table 2's results indicate that there is sufficient evidence that several physiological and behavioral factors have a significant relationship with high caffeine consumption, defined as intake above 400 mg per day. In both Table 1 and 2, heart rate emerged as a significant positive predictor (p=0.002), with each unit increase in heart rate multiplying the participant's predicted odds of high caffeine intake by $e^{-0.00944}=0.99$, while holding all other variables constant. Sleep quality in Table 1 also showed strong associations, where individuals reporting fair, good, or poor sleep quality had statistically significantly higher odds of high caffeine consumption compared to the reference group, as reflected by the log odds coefficients and highly significant p-values (all greatly less than 0.05), holding all other variables constant. Stress level had a similar relationship in Table 2; when we hold all other variables constant, both low and medium stress categories significantly predict the odds of high caffeine intake relative to the high-stress reference group (both p < 0.001 with patient's predicted odds of high caffeine intake multiplied by $e^(-0.81)}=2.26$ and $e^(-0.351)=1.42$, respectively). In contrast, BMI was not a significant predictor (p = 0.97) in either Table 1 or Table 2, indicating there was insufficient evidence to support a statistically significant relationship with high caffeine consumption in this dataset. Overall, the results show that caffeine consumption has a statistically significant relationship with sleep quality, stress, and heart rate, while BMI had insufficient evidence to support such relationship.
 
+
+<---In Discussion you say you were unable to do this, but do not fully explain why or tie it to the original goal.
 ## Discussion 
 The primary goal of this study was to evaluate how caffeine consumption relates to key health markers—BMI, heart rate, sleep quality, and stress level—and to determine whether these relationships differ across demographic groups. Our logistic regression results partially address these goals. We successfully identified several physiological and behavioral variables that predict high caffeine intake, but we were unable to evaluate demographic differences due to issues with multicollinearity and category imbalance.
 
