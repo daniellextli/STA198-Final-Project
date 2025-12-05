@@ -145,7 +145,7 @@ Table 2 and Table 3 indicate that there is sufficient evidence that several phys
 ## Discussion 
 The primary goal of this study was to evaluate how caffeine consumption relates to key health markers—BMI, heart rate, sleep quality, and stress level. These findings partially support our hypothesis that caffeine intake would be associated with heart rate, sleep, and stress but not BMI, leading us to successfully identifying several physiological and behavioral variables that predict high caffeine intake. 
 
-Our logistic regression models effectively identify the health factors associated with high caffeine consumption. Heart rate, sleep quality, and stress level consistently emerged as significant predictors of consuming more than 400 mg of caffeine per day. These results suggest that caffeine intake is linked to physiological and psychological states, particularly stress and sleep patterns. In contrast, BMI did not appear to be a significant predictor.
+Our logistic regression models effectively identify the health factors associated with high caffeine consumption. Heart rate, sleep quality, and stress level consistently emerged as significant predictors of consuming more than 400 mg of caffeine per day. These results suggest that caffeine intake is related to physiological and psychological states, particularly stress and sleep patterns. In contrast, BMI did not appear to be a significant predictor.
 
 Logistic regression was an appropriate starting point for predicting a binary threshold of high caffeine intake. However, several limitations emerged. Category imbalance and redundancy between variables prevented certain levels of sleep quality and stress from being included simultaneously. Alternative approaches, such as regularized logistic regression (LASSO or ridge), decision trees, or random forest models, could better handle correlated predictors and complex interactions (Wohlwend, 2023). Additionally, assessing multicollinearity formally using variance inflation factors would further strengthen the reliability of model selection.
 
@@ -155,7 +155,16 @@ If this study were conducted again in the future, several improvements would str
 
 Overall, our findings suggest that high caffeine consumption is strongly associated with elevated heart rate, poorer sleep quality, and heightened stress, while BMI shows no significant relationship with high caffeine intake. Although the synthetic nature of the dataset limits external validity, the patterns identified here highlight the potential value of monitoring stress and sleep behaviors when assessing caffeine-related health risks. Future studies using real clinical or observational data-and incorporating richer demographic and lifestyle variables-will be essential for clarifying the mechanisms linking high caffeine intake to cardiometabolic and psychological outcomes. Ultimately, this work underscores that caffeine consumption reflects measurable physiological and behavioral states that may help guide health assessment and intervention.
 
+As caffeine intake continues to rise, especially in younger populations, its crucial to understand the relationship between its use and health markers (Branum et al., 2014). Further research into this field may inform discussion about current initiatives to ban beverages with large caffeine concentrations. Similarly, a study conducted using a population of only adolescents may provide a scientific base for evaluating laws that prevent the purchase of caffeinated beverages that exceed a caffeine threshold. 
+
 \begin{thebibliography}{99}
+
+\bibitem{akova2023}
+Akova, İ., Duman, E. N., Sahar, A. E., \& Sümer, E. H. (2023). 
+The Relationship Between Caffeine Consumption and Depression, Anxiety, Stress Level and Sleep Quality in Medical Students. \textit{Journal of Turkish Sleep Medicine}, 10(1), 65--70. \url{https://doi.org/10.4274/jtsm.galenos.2022.06078}
+
+\bibitem{alateeq2021}
+AlAteeq, D. A., Alotaibi, R., Saqer, R. A., Alharbi, N., Alotaibi, M., Musllet, R., \& Alraqibah, R. (2021). Caffeine consumption, intoxication, and stress among female university students: A cross-sectional study. \textit{Middle East Current Psychiatry}, 28(1). \url{https://doi.org/10.1186/s43045-021-00109-5}
 
 \bibitem{healthline2025}
 Caffeine in Tea vs.\ Coffee: How Do They Compare? (n.d.). Retrieved November 20, 2025, from \url{https://www.healthline.com/nutrition/caffeine-in-tea-vs-coffee#caffeine-concerns}
@@ -165,6 +174,9 @@ Commissioner, O.\ of the. (2024). \textit{Spilling the Beans: How Much Caffeine 
 
 \bibitem{green1996}
 Green, P.\ J., \& Suls, J. (1996). The effects of caffeine on ambulatory blood pressure, heart rate, and mood in coffee drinkers. \textit{Journal of Behavioral Medicine}, 19(2), 111--128. \url{https://doi.org/10.1007/BF01857602}
+
+\bibitem{lane1987}
+Lane, J. D., \& Williams Jr., R. B. (1987). Cardiovascular Effects of Caffeine and Stress in Regular Coffee Drinkers. \textit{Psychophysiology}, 24(2), 157--164. \url{https://doi.org/10.1111/j.1469-8986.1987.tb00271.x}
 
 \bibitem{melton2025}
 Melton, A. (2025). \textit{Synthetic Data in Healthcare: When It Works \& When It Fails}. Invene.com. \url{https://www.invene.com/blog/synthetic-data-healthcare}
@@ -184,24 +196,14 @@ Supplements, P.\ C. for a W.\ on P.\ H.\ H.\ A.\ with C.\ of C.\ in F.\ and D., 
 \bibitem{temple2011}
 Temple, J.\ L., \& Ziegler, A.\ M. (2011). Gender Differences in Subjective and Physiological Responses to Caffeine and the Role of Steroid Hormones. \textit{Journal of Caffeine Research}, 1(1), 41--48. \url{https://doi.org/10.1089/jcr.2011.0005}
 
+\bibitem{tucker2025}
+Tucker, L. A., \& Beltran, F. (2025). Use of caffeine in 19,660 randomly selected U.S. adults: The role of overweight and obesity. \textit{Frontiers in Nutrition}, 12, 1588447. \url{https://doi.org/10.3389/fnut.2025.1588447}
+
 \bibitem{verweij2018}
 Verweij, K.\ J.\ H., Treur, J.\ L., \& Vink, J.\ M. (2018). Investigating causal associations between use of nicotine, alcohol, caffeine and cannabis: A two-sample bidirectional Mendelian randomization study. \textit{Addiction}, 113(7), 1333--1338. \url{https://doi.org/10.1111/add.14154}
 
 \bibitem{wohlwend2023}
 Wohlwend, B. (2023, July 14). Three Regression Models for Data Science: Linear Regression, Lasso Regression, and Ridge Regression. \textit{Medium}. \url{https://medium.com/@brandon93.w/three-regression-models-for-data-science-linear-regression-lasso-regression-and-ridge-regression-6aac73c0d7a5}
-
-\bibitem{akova2023}
-Akova, İ., Duman, E. N., Sahar, A. E., \& Sümer, E. H. (2023). 
-The Relationship Between Caffeine Consumption and Depression, Anxiety, Stress Level and Sleep Quality in Medical Students. \textit{Journal of Turkish Sleep Medicine}, 10(1), 65--70. \url{https://doi.org/10.4274/jtsm.galenos.2022.06078}
-
-\bibitem{alateeq2021}
-AlAteeq, D. A., Alotaibi, R., Saqer, R. A., Alharbi, N., Alotaibi, M., Musllet, R., \& Alraqibah, R. (2021). Caffeine consumption, intoxication, and stress among female university students: A cross-sectional study. \textit{Middle East Current Psychiatry}, 28(1). \url{https://doi.org/10.1186/s43045-021-00109-5}
-
-\bibitem{lane1987}
-Lane, J. D., \& Williams Jr., R. B. (1987). Cardiovascular Effects of Caffeine and Stress in Regular Coffee Drinkers. \textit{Psychophysiology}, 24(2), 157--164. \url{https://doi.org/10.1111/j.1469-8986.1987.tb00271.x}
-
-\bibitem{tucker2025}
-Tucker, L. A., \& Beltran, F. (2025). Use of caffeine in 19,660 randomly selected U.S. adults: The role of overweight and obesity. \textit{Frontiers in Nutrition}, 12, 1588447. \url{https://doi.org/10.3389/fnut.2025.1588447}
 
 \end{thebibliography}
 
