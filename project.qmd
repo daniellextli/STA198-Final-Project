@@ -153,9 +153,9 @@ Data quality also introduces constraints on validity. Because the dataset consis
 
 If this study were conducted again in the future, several improvements would strengthen the analysis. First, incorporating real-world observational data would significantly improve external validity and correlations. Second, including additional variables, such as socioeconomic status, occupation, genetics, and chronic health conditions, would offer a more comprehensive understanding of caffeine’s impact as well as allowing us to conclude stronger relationships.
 
-Overall, our findings suggest that high caffeine consumption is strongly associated with elevated heart rate, poorer sleep quality, and heightened stress, while BMI shows no significant relationship with high caffeine intake. Although the synthetic nature of the dataset limits external validity, the patterns identified here highlight the potential value of monitoring stress and sleep behaviors when assessing caffeine-related health risks. Future studies using real clinical or observational data-and incorporating richer demographic and lifestyle variables-will be essential for clarifying the mechanisms linking high caffeine intake to cardiometabolic and psychological outcomes. Ultimately, this work underscores that caffeine consumption reflects measurable physiological and behavioral states that may help guide health assessment and intervention.
-
 As caffeine intake continues to rise, especially in younger populations, its crucial to understand the relationship between its use and health markers (Branum et al., 2014). Further research into this field may inform discussion about current initiatives to ban beverages with large caffeine concentrations. Similarly, a study conducted using a population of only adolescents may provide a scientific base for evaluating laws that prevent the purchase of caffeinated beverages that exceed a caffeine threshold. 
+
+Overall, our findings suggest that high caffeine consumption is strongly associated with elevated heart rate, poorer sleep quality, and heightened stress, while BMI shows no significant relationship with high caffeine intake. Although the synthetic nature of the dataset limits external validity, the patterns identified here highlight the potential value of monitoring stress and sleep behaviors when assessing caffeine-related health risks. Future studies using real clinical or observational data—and incorporating richer demographic and lifestyle variables—will be essential for clarifying the mechanisms linking high caffeine intake to cardiometabolic and psychological outcomes. Ultimately, this work underscores that caffeine consumption reflects measurable physiological and behavioral states that may help guide health assessment and intervention.
 
 \begin{thebibliography}{99}
 
@@ -165,6 +165,12 @@ The Relationship Between Caffeine Consumption and Depression, Anxiety, Stress Le
 
 \bibitem{alateeq2021}
 AlAteeq, D. A., Alotaibi, R., Saqer, R. A., Alharbi, N., Alotaibi, M., Musllet, R., \& Alraqibah, R. (2021). Caffeine consumption, intoxication, and stress among female university students: A cross-sectional study. \textit{Middle East Current Psychiatry}, 28(1). \url{https://doi.org/10.1186/s43045-021-00109-5}
+
+\bibitem{branum2014}
+Branum, A. M., Rossen, L. M., \& Schoendorf, K. C. (2014).
+Trends in Caffeine Intake Among US Children and Adolescents.
+\textit{Pediatrics}, 133(3), 386--393.
+\url{https://doi.org/10.1542/peds.2013-2877}
 
 \bibitem{healthline2025}
 Caffeine in Tea vs.\ Coffee: How Do They Compare? (n.d.). Retrieved November 20, 2025, from \url{https://www.healthline.com/nutrition/caffeine-in-tea-vs-coffee#caffeine-concerns}
